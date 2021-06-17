@@ -2,15 +2,68 @@
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ 
+	"pages": [
 		{
+			"path": "pages/home/home",
+			"name":"home",
+			"style": {
+				"navigationBarTitleText": "晖致讲者管理平台"
+			}
+		}, {
 			"path": "pages/index/index",
 			"name":"index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "晖致讲者管理平台"
+			}
+		}, {
+			"path": "pages/my/my",
+			"name":"my",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/home/addtalker/addtalker",
+			"name":"addtalker",
+			"style": {
+				"navigationBarTitleText": "新增讲者"
+			}
+		}, {
+			"path": "pages/home/gradetalker/gradetalker",
+			"name":"gradetalker",
+			"style": {
+				"navigationBarTitleText": "讲者评价"
+			}
+		}, {
+			"path": "pages/home/detailtalker/detailtalker",
+			"name":"detailtalker",
+			"style": {
+				"navigationBarTitleText": "讲者详情"
 			}
 		}
 	],
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#343434",
+		"borderStyle": "white",
+		"backgroundColor": "#F7F7F7",
+		"list": [{
+			"pagePath": "pages/home/home",
+			"iconPath": "static/images/tabbar/bar-icon-doctor.png",
+			"selectedIconPath": "static/images/tabbar/bar-icon-doctor-selected.png",
+			"text": "讲者管理"
+		}, {
+			"pagePath": "pages/index/index",
+			"iconPath": "static/images/tabbar/bar-icon-appointment.png",
+			"selectedIconPath": "static/images/tabbar/bar-icon-appointment-selected.png",
+			"text": "会议预约"
+		}, {
+			"pagePath": "pages/my/my",
+			"iconPath": "static/images/tabbar/bar-icon-person.png",
+			"selectedIconPath": "static/images/tabbar/bar-icon-person-selected.png",
+			"text": "个人中心"
+		}]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
