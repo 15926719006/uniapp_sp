@@ -3,6 +3,7 @@ import Router, { RouterMount } from 'uni-simple-router'
 Vue.use(Router)
 // 初始化
 const router = new Router({
+  encodeURI: false,
   // eslint-disable-next-line no-undef
   routes: [...ROUTES] // 路由表
 })

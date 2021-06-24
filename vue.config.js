@@ -1,7 +1,7 @@
-const TransformPages = require('uni-read-pages');
+const TransformPages = require('uni-read-pages')
 const tfPages = new TransformPages({
   includes: ['path', 'name', 'meta']
-});
+})
 module.exports = {
   configureWebpack: {
     plugins: [
@@ -11,4 +11,5 @@ module.exports = {
     ]
   },
   transpileDependencies: ['uni-simple-router']
-};
+
+}

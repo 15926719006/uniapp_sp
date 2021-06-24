@@ -1,0 +1,104 @@
+page {
+    // padding-bottom: 20rpx;
+    // background-color: rgb(240, 240, 240);
+}
+
+.card {
+    margin-bottom: 30rpx;
+    padding: 20rpx 5rpx 20rpx 5rpx;
+    background-color: #fff;
+    border-radius: 7rpx;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 30rpx;
+
+    .top {
+        display: flex;
+        align-items: center;
+
+        .top-left {
+            flex: 1;
+            color: #999;
+            font-size: 24rpx;
+
+            view {
+                margin-bottom: 10rpx;
+            }
+
+            .title {
+                color: #000;
+                font-weight: 500;
+                font-size: 28rpx;
+            }
+
+            .title-time {
+                display: flex;
+                align-self: center;
+            }
+        }
+
+        .top-right {
+            width: 170rpx;
+            display: flex;
+            justify-content: center;
+
+            .tag {
+                width: 130rpx;
+                height: 45rpx;
+                text-align: center;
+                padding: 5rpx 20rpx 5rpx 20rpx;
+                border-radius: 9rpx;
+                margin-right: 10rpx;
+                font-size: $font-size-sm;
+                color: rgb(122, 68, 154);
+                background-color: rgb(245, 245, 245);
+                position: relative;
+
+                .badge {
+                    position: absolute;
+                    width: 15rpx;
+                    height: 15rpx;
+                    background-color: red;
+                    border-radius: 25px;
+                    top: -8rpx;
+                    right: -8rpx;
+                }
+            }
+
+            .tag-bk-1 {
+                background-color: rgb(41, 199, 126);
+                color: #fff;
+            }
+
+            .tag-bk-2 {
+                background-color: rgb(157, 157, 157);
+                color: #fff;
+            }
+
+            .tag-bk-3 {
+                background-color: rgb(244, 117, 117);
+                color: #fff;
+            }
+        }
+    }
+
+    .bottom {
+        margin-top: 30rpx;
+        padding-top: 30rpx;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #e4e0e0;
+        text-align: center;
+    }
+}
+
+.theme {
+    width: 400rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}

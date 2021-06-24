@@ -1,0 +1,375 @@
+page {
+    padding: 20rpx;
+}
+
+.edit {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10rpx;
+    font-size: 24rpx;
+    color: $bg-color-purple;
+}
+
+.card {
+    margin-bottom: 30rpx;
+    padding: 20rpx 5rpx 20rpx 5rpx;
+    background-color: #fff;
+    border-radius: 7rpx;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 30rpx;
+
+    .top {
+        display: flex;
+        align-items: center;
+
+        .top-left {
+            flex: 1;
+            color: #999;
+            font-size: 24rpx;
+
+            view {
+                margin-bottom: 10rpx;
+            }
+
+            .title {
+                color: #000;
+                font-weight: 500;
+                font-size: 28rpx;
+
+            }
+
+            .title-time {
+                display: flex;
+                align-self: center;
+            }
+        }
+
+        .top-right {
+            width: 170rpx;
+            display: flex;
+            justify-content: center;
+
+            .tag {
+                padding: 5rpx 20rpx 5rpx 20rpx;
+                border-radius: 9rpx;
+                margin-right: 10rpx;
+                font-size: $font-size-sm;
+            }
+
+            .tag-bk-1 {
+                color: #fff;
+                background-color: rgb(155, 83, 169);
+            }
+
+            .tag-bk-2 {
+                color: #999;
+            }
+        }
+    }
+
+    .bottom {
+        margin-top: 30rpx;
+        padding-top: 30rpx;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #e4e0e0;
+        text-align: center;
+    }
+}
+
+
+.tabbar {
+    height: 100rpx;
+    background-color: $bg-color-white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    border-bottom: 3rpx solid #c8c7cc;
+
+    .item {
+        height: 70rpx;
+        font-size: 26rpx;
+        color: $text-color-assist;
+        font-weight: 400 !important;
+        display: flex;
+        align-items: center;
+
+        &.active {
+            font-size: 28rpx;
+            color: rgb(122, 68, 154);
+            border-bottom: 4rpx solid rgb(122, 68, 154);
+        }
+    }
+
+}
+
+.section-2 {
+    padding: 20rpx;
+}
+
+.meetingDetail {
+    .main-box {
+        margin-top: 20rpx;
+        font-size: 24rpx;
+
+        .title {
+            color: rgb(122, 68, 154);
+            font-weight: 600;
+        }
+
+        .content {
+            margin-top: 5rpx;
+            font-size: 28rpx;
+        }
+    }
+}
+
+.next-button {
+    width: 100%;
+    height: 80rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(138, 75, 156);
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 100rpx;
+    margin-bottom: 20rpx;
+}
+
+
+.waitCheck {
+    position: relative;
+
+    .badge {
+        position: absolute;
+        width: 15rpx;
+        height: 15rpx;
+        background-color: red;
+        border-radius: 25px;
+        top: -1rpx;
+        right: -15rpx;
+    }
+}
+
+.subject-card {
+    margin-bottom: 80rpx;
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .top-left {
+            .title {
+                color: rgb(122, 68, 154);
+                font-size: 24rpx;
+                margin-bottom: 5rpx;
+            }
+        }
+
+        .top-right {
+            .inviteBtn {
+                background-color: rgb(137, 71, 151);
+                border-radius: 5px;
+                color: #fff;
+                padding: 10rpx 20rpx 10rpx 20rpx;
+                font-size: 20rpx;
+            }
+        }
+    }
+
+    .cutline {
+        margin-top: 30rpx;
+        margin-bottom: 40rpx;
+        width: 100%;
+        height: 3rpx;
+        background-color: #c0c0c0;
+    }
+
+    .bottom {
+
+        .noneInvited{
+            color: rgb(122, 68, 154);
+            margin: 20rpx;
+            text-align: center;
+        }
+        .item-card {
+            display: flex;
+            padding: 30rpx;
+            align-items: center;
+            justify-content: space-between;
+
+            .left {
+                display: flex;
+                flex-direction: column;
+
+                .item {
+                    display: flex;
+
+                    .title {
+                        color: #999;
+                        font-size: 24rpx;
+                        margin-right: 20rpx;
+                        margin-bottom: 20rpx;
+                    }
+
+                    .text {
+                        color: #000;
+                        font-size: 26rpx;
+                    }
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+
+                .time {
+                    margin-bottom: 20rpx;
+                    color: #999;
+                    font-size: 24rpx;
+                }
+
+                .state {
+                    font-size: 30rpx;
+                    font-weight: 600;
+                }
+
+                .stateColor-1 {
+                    color: rgb(129, 129, 129);
+                }
+
+                .stateColor-2 {
+                    color: rgb(41, 199, 126);
+                }
+
+                .stateColor-3 {
+                    color: rgb(244, 117, 117);
+                }
+            }
+        }
+
+        .talkerCard {
+            border-radius: 11rpx;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
+            margin-bottom: 40rpx;
+        }
+    }
+
+}
+
+
+.section-card {
+    width: 100%;
+    height: 250rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    border-top: 5rpx solid rgb(247, 247, 247);
+
+    .card-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+            width: 180rpx;
+            display: flex;
+            justify-content: center;
+
+            image {
+                width: 100rpx;
+                height: 100rpx;
+                border-radius: 25px;
+            }
+
+        }
+
+        .middle {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            // align-items: flex-start;
+            justify-content: center;
+
+            .middle-name {
+                display: flex;
+                font-weight: 600;
+                margin-bottom: 10rpx;
+
+                .item-score {
+                    margin-left: 15rpx;
+                    color: $color-warning;
+                }
+            }
+
+            .middle-tag {
+                margin-top: 10rpx;
+                display: flex;
+                .tag {
+                    padding: 5rpx 20rpx 5rpx 20rpx;
+                    color: #fff;
+                    border-radius: 9rpx;
+                    margin-right: 10rpx;
+                    font-size: $font-size-sm;
+                }
+
+                .tag1_bk {
+                    background-color: rgb(155, 83, 169);
+                }
+
+                .tag2_bk {
+                    background-color: rgb(248, 180, 41);
+                }
+            }
+        }
+
+        .right {
+            width: 150rpx;
+            display: flex;
+            justify-content: center;
+
+            image {
+                width: 50rpx;
+                height: 50rpx;
+            }
+        }
+    }
+}
+
+.divider {
+    margin-top: 20rpx;
+    margin-bottom: 30rpx;
+}
+
+.popupSearch {
+    padding: 20rpx;
+}
+
+.next-button {
+    position: absolute;
+    width: 700rpx;
+    height: 80rpx;
+    // margin: 0 auto;
+    bottom: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(138, 75, 156);
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 100rpx;
+    margin-bottom: 20rpx;
+    left: 50%;
+    transform: translate(-50%, 0); /* 50%为自身尺寸的一半 */
+    -webkit-transform: translate(-50%, 0);
+}

@@ -10,13 +10,16 @@ page{
     align-items: center;
     .title{
         font-weight: 600;
-        margin-bottom: 30rpx;
+        margin-top: 30rpx;
+        margin-bottom: 20rpx;
     }
     .photo{
-        width: 120rpx;
-        height: 120rpx;
-        border-radius: 40px;
-        background-color: rgb(221, 221, 221);
+        image {
+            width: 120rpx;
+            height: 120rpx;
+            border-radius: 40px;
+            margin-bottom: 10rpx;
+        }
     }
 }
 
@@ -60,6 +63,11 @@ page{
         textarea{
             font-size: 24rpx;
             margin-bottom: 30rpx;
+        }
+        .textLength{
+            display: flex;
+            flex-direction: row-reverse;
+            margin-right: 20rpx;
         }
         .tag-area{
             display: flex;

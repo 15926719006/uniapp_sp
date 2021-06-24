@@ -1,5 +1,37 @@
-import url from '@/api/baseUrl'
-import storage from '@/utils/storage/index'
+import { url } from '@/api/baseUrl'
+import { baseUtils } from '../common/BaseUtils'
+// import storage from '@/utils/storage/index'
+const postData = { Array1: {}}
+
+async function loginRequest() {
+  if (loginRequest.result) return loginRequest.result
+  loginRequest.result = mainLogin()
+  return loginRequest.result
+}
+function mainLogin() {
+  return new Promise(resolve => {
+    // 没有token的时候
+    if (!uni.getStorageSync('authToken')) {
+      uni.request({
+        url: url + '/Basis/LoginStatusGet',
+        data: {},
+        method: 'post'
+      }).then(res => {
+        // console.log(res[1].data.errormsg)
+        if (res[1].data.errormsg === '登录状态正常') {
+          // console.log(123)
+          uni.setStorageSync('authToken', res[1].data.errormsg)
+        } else {
+          uni.reLaunch({
+            url: '' // 登录页面
+          })
+          uni.setStorageSync('authToken', '')
+        }
+        resolve(true)
+      })
+    }
+  })
+}
 
 const requests = {
   config: {
@@ -8,7 +40,7 @@ const requests = {
       'Content-Type': 'application/json;charset=UTF-8'
     },
     data: {},
-    method: 'GET',
+    method: 'POST',
     dataType: 'json', /* 如设为json，会对返回的数据做一次 JSON.parse */
     responseType: 'text',
     success() { },
@@ -17,7 +49,6 @@ const requests = {
   },
   interceptor: {
     request(options) {
-      console.log('requst')
       uni.showLoading({
         title: '加载中...'
       })
@@ -26,16 +57,18 @@ const requests = {
       uni.hideLoading()
     }
   },
-  request(options = {}) {
+
+  async request(options = {}) {
+    postData.Array1 = options.data || {}
     options.baseUrl = options.baseUrl || this.config.baseUrl
     options.dataType = options.dataType || this.config.dataType
     options.url = options.baseUrl + (options.url || '')
-    options.data = options.data || {}
+    options.data = postData || {}
     options.method = options.method || this.config.method
-    // 携带token
-    const _token = { 'Authorization': storage.Authorization || 'undefined' }
-    options.header = Object.assign({}, options.header, _token)
-    if (storage.has('Authorization')) {
+    if (!uni.getStorageSync('authToken')) {
+      await loginRequest()
+    }
+    if (uni.getStorageSync('authToken')) {
       return new Promise((resolve, reject) => {
         let _config = null
         options.complete = (response) => {
@@ -52,11 +85,14 @@ const requests = {
           this.reslog(response)
           // 成功
           if (statusCode === 200) {
-            resolve(response.data.result)
+            // 统一提示报错信息
+            if (!response.data.success) {
+              baseUtils.showToast(response.data.data)
+            }
+
+            resolve(response.data)
           } else if (statusCode === 401) {
             uni.clearStorageSync()
-            reject(response)
-          } else {
             reject(response)
           }
         }

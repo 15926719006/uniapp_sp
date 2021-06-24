@@ -117,6 +117,26 @@ class BaseUtils {
       })
     })
   }
+  getEnv() {
+    let getEnv
+    if (process.env.NODE_ENV === 'development') {
+      getEnv = function() {
+        return 'development'
+      }
+    } else {
+      getEnv = function() {
+        return 'production'
+      }
+    }
+    getEnv()
+  }
+  /** 返回文件唯一名称 */
+  getGuid() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0; var v = c === 'x' ? r : (r & 0x3 | 0x8)
+      return v.toString(16)
+    }) + (Math.floor(Math.random() * (9999 - 1000)) + 1000)
+  }
 }
 const baseUtils = new BaseUtils()
 export { baseUtils }

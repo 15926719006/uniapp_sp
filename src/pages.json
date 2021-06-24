@@ -7,19 +7,19 @@
 			"path": "pages/home/home",
 			"name":"home",
 			"style": {
-				"navigationBarTitleText": "晖致讲者管理平台"
+				"navigationBarTitleText": "讲者管理"
 			}
 		}, {
 			"path": "pages/index/index",
 			"name":"index",
 			"style": {
-				"navigationBarTitleText": "晖致讲者管理平台"
+				"navigationBarTitleText": "会议预约"
 			}
 		}, {
 			"path": "pages/my/my",
 			"name":"my",
 			"style": {
-				"navigationBarTitleText": "uni-app",
+				"navigationBarTitleText": "个人中心",
 				"navigationStyle":"custom"
 			}
 		}, {
@@ -39,6 +39,61 @@
 			"name":"detailtalker",
 			"style": {
 				"navigationBarTitleText": "讲者详情"
+			}
+		}, {
+			"path": "pages/index/addmeeting/addmeeting",
+			"name":"addmeeting",
+			"style": {
+				"navigationBarTitleText": "添加会议"
+			}
+		}, {
+			"path": "pages/index/invited/invitedDetail/invitedDetail",
+			"name":"invitedDetail",
+			"style": {
+				"navigationBarTitleText": "添加会议",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/index/sponsor/sponsorDetail/sponsorDetail",
+			"name":"sponsorDetail",
+			"style": {
+				"navigationBarTitleText": "发起详情",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/index/sponsor/sponsorCheck/sponsorCheck",
+			"name":"sponsorCheck",
+			"style": {
+				"navigationBarTitleText": "发起审核",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/index/sponsor/sponsorAffirm/sponsorAffirm",
+			"name":"sponsorAffirm",
+			"style": {
+				"navigationBarTitleText": "发起确认",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/index/partin/partinDetail/partinDetail",
+			"name":"partinDetail",
+			"style": {
+				"navigationBarTitleText": "参与详情",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/login/login",
+			"name":"login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle":"custom"
+			}
+		}, {
+			"path": "pages/my/myinfo/myinfo",
+			"name":"myinfo",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"navigationStyle":"custom"
 			}
 		}
 	],
@@ -68,6 +123,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle":"custom"
 	}
 }

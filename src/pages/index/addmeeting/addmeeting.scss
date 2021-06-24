@@ -1,0 +1,112 @@
+page{
+    padding-bottom: 20rpx;
+}
+
+.divider {
+    margin-top: 50rpx;
+}
+
+.scetion-form {
+    padding: 40rpx;
+}
+
+.evaluate{
+    margin-top: 30rpx;
+    .tag-box {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30rpx;
+        .tag {
+            border-radius: 40px;
+            padding: 10rpx 30rpx 10rpx 30rpx;
+            background-color: rgb(220, 220, 220);
+            color: rgb(145, 145, 145);
+            font-size: 24rpx;
+            margin-right: 15rpx;
+            margin-bottom: 15rpx;
+        }
+        .active{
+            background-color: rgb(138, 75, 156);
+            color: #fff;
+        }
+    }
+}
+
+
+.next-button{
+    width: 700rpx;
+    height: 80rpx;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(138, 75, 156);
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20rpx;
+}
+
+.scoreText{
+    color: rgb(170, 171, 173);
+    width: 80rpx;
+}
+
+.scoreTextEnd{
+    color: rgb(170, 171, 173);
+    width: 80rpx;
+    text-align: center;
+}
+
+.addMore{
+    text-align: center;
+    color: rgb(138, 75, 156);
+    font-size: 26rpx;
+    margin-top: 10rpx;
+}
+
+.inputImage{
+    margin-left: 20rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.section-3{
+    width: 100%;
+    // padding: 20rpx 60rpx 20rpx 60rpx;
+    margin-bottom: 40rpx;
+    .title{
+        font-weight: 600;
+        margin-bottom: 7rpx;
+    }
+    .textarea{
+        background-color: rgb(244, 244, 244);
+        min-height: 400rpx;
+        border-radius: 3px;
+        padding: 25rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        textarea{
+            font-size: 24rpx;
+            margin-bottom: 30rpx;
+        }
+        .textLength{
+            display: flex;
+            flex-direction: row-reverse;
+            margin-right: 20rpx;
+        }
+        .tag-area{
+            display: flex;
+            flex-wrap: wrap;
+            .tag{
+                border-radius: 40px;
+                padding: 10rpx 30rpx 10rpx 30rpx;
+                background-color: rgb(220, 220, 220);
+                color: rgb(145, 145, 145);
+                font-size: 24rpx;
+                margin-right: 15rpx;
+                margin-bottom: 15rpx;
+            }
+        }
+    }
+}
