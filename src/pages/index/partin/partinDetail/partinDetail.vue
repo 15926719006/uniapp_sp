@@ -10,7 +10,7 @@
           </view>
           <view>{{ detailData.M_location }}</view>
         </view>
-        <view class="right">会议详情</view>
+        <view class="right" @click="goMeeting">会议详情</view>
       </view>
     </view>
     <view class="cutline" />
@@ -28,7 +28,7 @@
             <view class="item-score">{{ detailData.SK_score5 }}分</view>
           </view>
           <view>{{ detailData.SK_hospital }}</view>
-          <view>{{ detailData.SK_branch }}·{{ detailData.post }}</view>
+          <view>{{ detailData.SK_branch }}·{{ detailData.SK_jobtitle }}</view>
           <view class="right-tag">
             <view class="tag tag1_bk">产品认可度{{ detailData.Sk_attitude }}</view>
             <view class="tag tag2_bk">{{ detailData.Sk_tendency }}</view>
@@ -70,7 +70,6 @@
     <u-popup v-model="refuseMeetingModel" mode="center" border-radius="14">
       <view class="refuse">
         <view class="item-input">
-          <!-- <u-input v-model="queryParams.L_Reply" :border="true" placeholder="请输入拒绝理由" /> -->
           <view class="item-textarea">
             <textarea
               v-model="queryParams.L_Reply"
@@ -148,6 +147,15 @@ export default {
           })
         }
       }
+    },
+    // 会议详情
+    goMeeting() {
+      this.$router.push({
+        name: 'sponsorDetail',
+        query: {
+          DetailAMID: this.detailData.AMID
+        }
+      })
     }
   }
 }

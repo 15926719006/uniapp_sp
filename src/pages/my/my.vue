@@ -6,10 +6,10 @@
     </view>
     <view class="section-2">
       <view>
-        <image src="/static/images/home/home-photo.png" mode="" />
+        <image :src="info.SF_Avatar ? info.SF_Avatar : '/static/images/common/head-user-unop.png'" :mode="info.SF_Avatar ? 'center':''" />
       </view>
-      <view class="name">王销售</view>
-      <view class="area">华北区域</view>
+      <view class="name">{{ info.SF_name }}</view>
+      <view class="area">{{ info.SF_department }}</view>
     </view>
     <view class="section-3">
       <u-cell-group>
@@ -21,15 +21,22 @@
 </template>
 
 <script>
-// import { loginStatusGet } from '@/api/requestConfig'
+import { myGet } from '@/api/requestConfig'
 export default {
+  data() {
+    return {
+      info: {}
+    }
+  },
   created() {
+    this.myGetImpl()
   },
   methods: {
-    // async get() {
-    //   const result = await loginStatusGet()
-    //   console.log(result)
-    // }
+    async myGetImpl() {
+      const result = await myGet()
+      console.log(result)
+      this.info = result.data.Table[0]
+    },
     get() {
       this.$Router.push({
         name: 'login'

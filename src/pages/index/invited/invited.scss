@@ -102,3 +102,11 @@ page {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+.divider{
+    height: 60rpx;
+}
+
+.swiperList{
+    height: calc(100vh - 200rpx - 100rpx);
+}

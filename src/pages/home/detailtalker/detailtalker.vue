@@ -59,7 +59,7 @@ export default {
       labelList: []
     }
   },
-  onShow() {
+  onLoad() {
     // console.log(this.doctorDetail)
     this.speakerGetImpl()
   },

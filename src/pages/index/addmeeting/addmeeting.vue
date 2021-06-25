@@ -3,27 +3,27 @@
     <view class="divider"><u-divider>会议信息</u-divider></view>
     <!-- 表单 -->
     <view class="scetion-form">
-      <u-form ref="uForm" :model="form">
-        <u-form-item label-width="150" label="会议名称" prop="name" :border-bottom="false">
+      <u-form ref="uForm" :model="queryParams">
+        <u-form-item label-width="150" label="会议名称" prop="M_name" :border-bottom="false">
           <u-input v-model="queryParams.M_name" :border="border" placeholder="请输入会议名称" />
         </u-form-item>
-        <u-form-item label-width="150" :label-position="labelPosition" label="开始时间" prop="time" :border-bottom="false">
+        <u-form-item label-width="150" :label-position="labelPosition" label="开始时间" prop="M_StartingTime" :border-bottom="false">
           <u-input v-model="queryParams.M_StartingTime" :border="border" type="select" :select-open="startTimePicker" placeholder="请选择开始时间" @click="startTimePicker = true" />
         </u-form-item>
-        <u-form-item label-width="150" :label-position="labelPosition" label="结束时间" prop="time" :border-bottom="false">
+        <u-form-item label-width="150" :label-position="labelPosition" label="结束时间" prop="M_EndTime" :border-bottom="false">
           <u-input v-model="queryParams.M_EndTime" :border="border" type="select" :select-open="endTimePicker" placeholder="请选择结束时间" @click="endTimePicker = true" />
         </u-form-item>
-        <u-form-item label-width="150" :label-position="labelPosition" label="区域选择" prop="area">
+        <u-form-item label-width="150" :label-position="labelPosition" label="区域选择" prop="AreaName">
           <u-input v-model="queryParams.AreaName" :border="border" type="select" :select-open="areaPickerShow" placeholder="请选择" @click="areaPickerShow = true" />
         </u-form-item>
         <u-form-item :label-position="labelPosition" label="省市" prop="region" label-width="150" :border-bottom="false">
           <u-input v-model="region" :border="border" type="select" :select-open="provincepickerShow" placeholder="请选择地区" @click="provincepickerShow = true" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="地点" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="地点" prop="M_location" label-width="150" :border-bottom="false">
           <u-input v-model="queryParams.M_location" :border="border" placeholder="请输入地点" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="人数" prop="region" label-width="150" :border-bottom="false">
-          <u-input v-model="queryParams.M_Number_p" :border="border" placeholder="请输入人数" />
+        <u-form-item :label-position="labelPosition" label="人数" prop="M_Number_p" label-width="150" :border-bottom="false">
+          <u-input v-model="queryParams.M_Number_p" type="number" :border="border" placeholder="请输入人数" />
         </u-form-item>
         <!-- cutline -->
         <view class="divider">
@@ -40,19 +40,19 @@
           <u-divider>讲者要求</u-divider>
         </view>
         <!-- cutline -->
-        <u-form-item :label-position="labelPosition" label="科室" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="科室" prop="M_branch" label-width="150" :border-bottom="false">
           <u-input v-model="queryParams.M_branch" :border="border" placeholder="请输入科室" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="职称" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="职称" prop="M_jobtitle" label-width="150" :border-bottom="false">
           <u-input v-model="queryParams.M_jobtitle" :border="border" placeholder="请输入职称" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="产品认可度" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="产品认可度" prop="M_attitude" label-width="150" :border-bottom="false">
           <u-input v-model="queryParams.M_attitude" :border="border" type="select" :select-open="productPickerShow" placeholder="请选择产品认可度" @click="productPickerShow = true" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="擅长的方向" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="擅长的方向" prop="M_tendency" label-width="150" :border-bottom="false">
           <u-input v-model="queryParams.M_tendency" :border="border" type="select" :select-open="directionPickerShow" placeholder="请选择擅长的方向" @click="directionPickerShow = true" />
         </u-form-item>
-        <u-form-item :label-position="labelPosition" label="评分" prop="region" label-width="150" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="评分" prop="M_score" label-width="150" :border-bottom="false">
           <view class="scoreText">大于</view>
           <u-number-box v-model="queryParams.M_score" :min="0" :max="4" />
           <view class="scoreTextEnd">分</view>
@@ -105,6 +105,7 @@
 <script>
 import { areaGet, meetingAddSave, meetingGet } from '@/api/requestConfig'
 import { escapeCode } from '@/utils/common/EscapeCode'
+import { baseUtils } from '@/utils/common/BaseUtils'
 export default {
   data() {
     return {
@@ -163,12 +164,27 @@ export default {
       subjectNum: 2,
       subjectList: [],
       isEdit: false,
-      evaluate: ''
+      evaluate: '',
+      rules: {
+        M_name: [{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }],
+        M_StartingTime: [{ required: true, message: '请选择开始时间', trigger: ['blur', 'change'] }],
+        M_EndTime: [{ required: true, message: '请选择结束时间', trigger: ['blur', 'change'] }],
+        AreaName: [{ required: true, message: '请选择区域', trigger: ['blur', 'change'] }],
+        M_location: [{ required: true, message: '请输入地点', trigger: ['blur', 'change'] }],
+        M_Number_p: [{ required: true, message: '请输入人数', trigger: ['blur', 'change'] }],
+        M_branch: [{ required: true, message: '请输入科室', trigger: ['blur', 'change'] }],
+        M_jobtitle: [{ required: true, message: '请输入职称', trigger: ['blur', 'change'] }],
+        M_attitude: [{ required: true, message: '请选择产品认可度', trigger: ['blur', 'change'] }],
+        M_tendency: [{ required: true, message: '请选择擅长的方向', trigger: ['blur', 'change'] }]
+      }
     }
   },
   created() {
     this.areaGetImpl()
     this.getEdit()
+  },
+  onReady() {
+    this.$refs.uForm.setRules(this.rules)
   },
   methods: {
     // 判断目前是新增还是编辑
@@ -237,31 +253,51 @@ export default {
     },
     // 提交数据
     async submit() {
-      // 转义
-      const Array3 = []
-      this.subjectList.map((v, k) => {
-        Array3.push({
-          AMTID: '',
-          T_Topic: escapeCode.XMLSerialize(v)
-        })
+      this.$refs.uForm.validate(valid => {
+        if (valid) {
+          if (this.queryParams.M_label) {
+            if (this.subjectList.length >= 1) {
+              // 转义
+              const Array3 = []
+              this.subjectList.map((v, k) => {
+                Array3.push({
+                  AMTID: '',
+                  T_Topic: escapeCode.XMLSerialize(v)
+                })
+              })
+              const self = this
+              uni.showModal({
+                title: '提交',
+                content: '是否确认提交',
+                success: async function(res) {
+                  if (res.confirm) {
+                    const result = await meetingAddSave({ Array2: escapeCode.AllObjectFilter(this.queryParams), Array3 })
+                    console.log(result)
+                    self.$Router.push({
+                      name: 'index'
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            } else {
+              baseUtils.showToast('请至少填写一个讲题')
+            }
+          } else {
+            baseUtils.showToast('请填写评分/选择文字评价')
+          }
+        } else {
+          console.log('验证失败')
+        }
       })
-
-      const result = await meetingAddSave({ Array2: escapeCode.AllObjectFilter(this.queryParams), Array3 })
-      console.log(result)
-      if (!result.success) {
-        baseUtils.showToast(result.data)
-      } else {
-        this.$Router.push({
-          name: 'index'
-        })
-      }
     },
     addMore() {
       this.subjectNum += 1
     },
     removeSubject(index) {
       this.subjectList.splice(index, 1)
-      this.subjectNum = this.subjectList.length
+      this.subjectNum -= 1
     }
   }
 }

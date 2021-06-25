@@ -35,3 +35,9 @@ export function meeting_InvitedSave(data) { return http.request({ url: '/Meeting
 
 //  获取个人信息
 export function myGet(data) { return http.request({ url: '/My/MyGet', method: 'post', data: data }) }
+
+// 邮箱发送验证码
+export function emailRandomCode(data) { return http.request({ url: '/RandomCode/EmailRandomCode', method: 'post', data: data }) }
+// 邮箱绑定账号
+export function emailBindSave(data) { return http.request({ url: '/RandomCode/EmailBindSave', method: 'post', data: data }) }
+

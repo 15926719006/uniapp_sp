@@ -3,7 +3,6 @@
     <view class="section-1">
       <view>
         <view class="photo" @click="uploadImage">
-          <!-- <image src="/static/images/home/home-photo.png" mode="" /> -->
           <image :src="form.SK_Avatar ? form.SK_Avatar : '/static/images/common/head-user.png'" :mode="form.SK_Avatar ? 'center':''" />
         </view>
         <view>添加头像</view>
@@ -15,33 +14,33 @@
     <view class="section-2">
       <u-form ref="uForm" :model="form">
         <!-- 1 -->
-        <u-form-item label-width="160" label="姓名" prop="name" :border-bottom="false">
+        <u-form-item label-width="160" label="姓名" prop="Sk_name" :border-bottom="false">
           <u-input v-model="form.Sk_name" :border="border" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="性别" prop="gender" :border-bottom="false">
+        <u-form-item label-width="160" :label-position="labelPosition" label="性别" prop="Sk_gender" :border-bottom="false">
           <u-input v-model="form.Sk_gender" :border="border" type="select" :select-open="sexPickerShow" placeholder="请选择性别" @click="sexPickerShow = true" />
         </u-form-item>
         <!-- 2 -->
-        <u-form-item label-width="160" :label-position="labelPosition" label="产品认可度" prop="product" :border-bottom="false">
+        <u-form-item label-width="160" :label-position="labelPosition" label="产品认可度" prop="Sk_attitude" :border-bottom="false">
           <u-input v-model="form.Sk_attitude" :border="border" type="select" :select-open="productPickerShow" placeholder="请选择" @click="productPickerShow = true" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="擅长的方向" prop="direction">
+        <u-form-item label-width="160" :label-position="labelPosition" label="擅长的方向" prop="Sk_tendency">
           <u-input v-model="form.Sk_tendency" :border="border" type="select" :select-open="directionPickerShow" placeholder="请选择" @click="directionPickerShow = true" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="区域选择" prop="area">
+        <u-form-item label-width="160" :label-position="labelPosition" label="区域选择" prop="AreaName">
           <u-input v-model="form.AreaName" :border="border" type="select" :select-open="areaPickerShow" placeholder="请选择" @click="areaPickerShow = true" />
         </u-form-item>
         <!-- 3 -->
-        <u-form-item :label-position="labelPosition" label="所在地区" prop="province" label-width="160" :border-bottom="false">
+        <u-form-item :label-position="labelPosition" label="所在地区" prop="Region" label-width="160" :border-bottom="false">
           <u-input v-model="region" :border="border" type="select" :select-open="provincepickerShow" placeholder="请选择地区" @click="provincepickerShow = true" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="医院" prop="hospital" :border-bottom="false">
+        <u-form-item label-width="160" :label-position="labelPosition" label="医院" prop="SK_hospital" :border-bottom="false">
           <u-input v-model="form.SK_hospital" :border="border" placeholder="请输入医院" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="科室" prop="office" :border-bottom="false">
+        <u-form-item label-width="160" :label-position="labelPosition" label="科室" prop="SK_branch" :border-bottom="false">
           <u-input v-model="form.SK_branch" :border="border" placeholder="请输入科室" />
         </u-form-item>
-        <u-form-item label-width="160" :label-position="labelPosition" label="职称" prop="office" :border-bottom="false">
+        <u-form-item label-width="160" :label-position="labelPosition" label="职称" prop="SK_jobtitle" :border-bottom="false">
           <u-input v-model="form.SK_jobtitle" :border="border" placeholder="请输入职称" />
         </u-form-item>
       </u-form>
@@ -101,13 +100,14 @@ export default {
         SK_jobtitle: ''
       },
       rules: {
-        name: [
-          {
-            required: true,
-            message: '请输入姓名',
-            trigger: ['blur', 'change']
-          }
-        ]
+        Sk_name: [{ required: true, message: '请输入姓名', trigger: ['blur', 'change'] }],
+        Sk_gender: [{ required: true, message: '请选择性别', trigger: ['blur', 'change'] }],
+        SK_hospital: [{ required: true, message: '请输入医院', trigger: ['blur', 'change'] }],
+        SK_branch: [{ required: true, message: '请输入科室', trigger: ['blur', 'change'] }],
+        SK_jobtitle: [{ required: true, message: '请输入职称', trigger: ['blur', 'change'] }],
+        Sk_attitude: [{ required: true, message: '请选择产品认可度', trigger: ['blur', 'change'] }],
+        Sk_tendency: [{ required: true, message: '请选择擅长的方向', trigger: ['blur', 'change'] }],
+        AreaName: [{ required: true, message: '请选择区域', trigger: ['blur', 'change'] }]
       },
       sexSelector: ['男', '女'],
       productSelector: ['低', '中', '高'],
@@ -148,13 +148,7 @@ export default {
       })
     },
     submit() {
-      this.$refs.uForm.validate(valid => {
-        if (valid) {
-          console.log('验证通过')
-        } else {
-          console.log('验证失败')
-        }
-      })
+
     },
     // 性别回调
     sexSelectorConfirm(e) {
@@ -186,31 +180,38 @@ export default {
     },
     // 跳转下一页
     async goGradetalker() {
-      if (!this.isEdit) {
-        this.$router.push({
-          name: 'gradetalker',
-          query: {
-            form: this.form
-          }
-        })
-      } else {
-        uni.showModal({
-          title: '提交',
-          content: '是否确认提交',
-          success: async function(res) {
-            if (res.confirm) {
-              const result = await speakerAddSave(escapeCode.AllObjectFilter(this.form))
-              if (result.success) {
-                this.$router.push({
-                  name: 'home'
-                })
+      const self = this
+      this.$refs.uForm.validate(valid => {
+        if (valid) {
+          if (!this.isEdit) {
+            this.$router.push({
+              name: 'gradetalker',
+              query: {
+                form: this.form
               }
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
+            })
+          } else {
+            uni.showModal({
+              title: '提交',
+              content: '是否确认提交',
+              success: async function(res) {
+                if (res.confirm) {
+                  const result = await speakerAddSave(escapeCode.AllObjectFilter(self.form))
+                  if (result.success) {
+                    self.$router.push({
+                      name: 'home'
+                    })
+                  }
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
           }
-        })
-      }
+        } else {
+          console.log('验证失败')
+        }
+      })
     },
     // 图片上传
     uploadImage() {
@@ -283,14 +284,11 @@ export default {
         if (data) {
           const imgurl_cos = data.Location
           if (imgurl_cos) {
-            // imgurl_cos = 'https://' + imgurl_cos
             self.form.SK_Avatar = 'https://' + imgurl_cos
           }
-          // console.log("https://" + imgurl_cos);
         } else {
           baseUtils.showToast('图片上传失败,请重试')
         }
-        // self.form.SK_Avatar = 'https://' + data.Location
       })
     }
 

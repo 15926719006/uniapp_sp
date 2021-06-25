@@ -154,26 +154,34 @@ export default {
         SK_Avatar: this.form.SK_Avatar,
         SK_jobtitle: this.form.SK_jobtitle
       }
-      uni.showModal({
-        title: '提交',
-        content: '是否确认提交',
-        success: async function(res) {
-          if (res.confirm) {
-            const result = await speakerAddSave(escapeCode.AllObjectFilter(queryParams))
-            console.log(result.success)
-            if (result.success) {
-              await baseUtils.showToast('添加成功')
-              this.$Router.push({
-                name: 'home'
-              })
-            } else {
-              baseUtils.showToast('添加失败')
+      if (this.rateList.init && this.rateList.figure && this.rateList.expression && this.rateList.experience) {
+        if (this.evaluate) {
+          uni.showModal({
+            title: '提交',
+            content: '是否确认提交',
+            success: async function(res) {
+              if (res.confirm) {
+                const result = await speakerAddSave(escapeCode.AllObjectFilter(queryParams))
+                console.log(result.success)
+                if (result.success) {
+                  await baseUtils.showToast('添加成功')
+                  this.$Router.push({
+                    name: 'home'
+                  })
+                } else {
+                  baseUtils.showToast('添加失败')
+                }
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
             }
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
+          })
+        } else {
+          baseUtils.showToast('请评价或点击评价标签！')
         }
-      })
+      } else {
+        baseUtils.showToast('请完整评分！')
+      }
     }
   }
 }

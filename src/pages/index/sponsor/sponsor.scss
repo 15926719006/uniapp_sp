@@ -87,3 +87,14 @@ page {
         right: -15rpx;
     }
 }
+
+.divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60rpx;
+}
+
+.swiperList{
+    height: calc(100vh - 200rpx - 100rpx);
+}

@@ -1,3 +1,12 @@
+page{
+    // height: 92vh;
+    height: calc(100vh - 100rpx);
+    overflow:hidden;
+	overflow-y:hidden; 
+}
+
+
+
 .section-search {
     padding: 20rpx;
     position: relative;
@@ -105,6 +114,14 @@
 }
 
 .divider{
-    margin-top: 20rpx;
-    margin-bottom: 30rpx;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.section-list{
+    // height: 75vh;
+    height: calc(100vh - 100rpx - 184rpx);
 }

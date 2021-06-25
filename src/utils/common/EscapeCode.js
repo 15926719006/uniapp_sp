@@ -10,7 +10,7 @@ class EscapeCode {
         .replace(/</g, '&lt;').replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;').replace(/'/g, '&apos;')
         .replace(/&/g, '&amp;')
-        .replace(/[\r\n]/g, '&lt;br/&gt;').replace(/\s+/g, ' ')
+        .replace(/[\r\n]/g, '&lt;br/&gt;').replace(/\s+/g, '')
     } else {
       return ''
     }
@@ -115,9 +115,9 @@ class EscapeCode {
 
   // 所有返回值转义
   ResponseFilter(data) {
-    if (data && typeof data instanceof Array) {
+    if (data && data instanceof Array) {
       data.forEach(item => {
-        if (item && typeof item instanceof Array) {
+        if (item && item instanceof Array) {
           item = escapeCode.ArrFilterReverse(item)
         } else if (item && typeof item === 'object') {
           item = escapeCode.XMLReverseSequence(item)

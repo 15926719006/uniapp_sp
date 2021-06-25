@@ -347,8 +347,10 @@ page {
 }
 
 .divider {
-    margin-top: 20rpx;
-    margin-bottom: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80rpx;
 }
 
 .popupSearch {
